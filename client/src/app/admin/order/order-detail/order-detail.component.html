@@ -1,0 +1,81 @@
+<form nz-form [formGroup]="itemForm">
+  <!-- code  -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="code">code</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input readonly nz-input formControlName="code" id="code" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- receiver  -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="receiver">code</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input readonly nz-input formControlName="receiver" id="receiver" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- phoneNumber -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber">phoneNumber</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-input-number readonly formControlName="phoneNumber"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- address -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address">address</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input readonly nz-input formControlName="address" id="address" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- state -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="state">state</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input readonly nz-input formControlName="state" id="state" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- typeOfPayment -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="typeOfPayment">typeOfPayment</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input readonly readonly nz-input formControlName="typeOfPayment" id="typeOfPayment" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- note -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="note">note</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input readonly nz-input formControlName="note" id="note" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- dateOrdered -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="dateOrdered">dateOrdered</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-date-picker nz-input formControlName="dateOrdered" id="dateOrdered"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- note -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="note">note</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input readonly nz-input formControlName="note" id="note" />
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<hr>
+<h3>Product Items</h3>
+<nz-table #basicTable [nzData]="OneItem.products">
+    <thead>
+      <tr>
+        <th>Name Product</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.product.name}}</td>
+        <td>{{data.quantity}}</td>
+      </tr>
+    </tbody>
+  </nz-table>

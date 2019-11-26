@@ -1,0 +1,45 @@
+<form nz-form [formGroup]="itemForm">
+  <!-- Name  -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input nz-input formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- phoneNumb -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumb">phoneNumb</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-input-number formControlName="phoneNumb"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- address -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address">address</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input nz-input formControlName="address" id="address" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- email -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">email</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input nz-input formControlName="email" id="email" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- company -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="company">company</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input nz-input formControlName="company" id="company" />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- date -->
+  <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="date">date</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <nz-date-picker nz-input formControlName="date" id="date"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+</form>

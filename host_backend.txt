@@ -1,0 +1,17 @@
+-----host server live-------
+{
+  "/api/*":{
+      "target":"https://phone-shop-server-huybao.herokuapp.com",
+      "secure": false,
+      "changeOrigin": true
+  }
+}
+
+-----local host------------
+{
+  "/api/*":{
+      "target":"http://localhost:3000",
+      "secure": false
+  }
+}
+

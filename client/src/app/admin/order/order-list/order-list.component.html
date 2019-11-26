@@ -1,0 +1,75 @@
+<div nz-row nzType="flex" nzAlign="middle">
+  <div nz-col nzSpan="2">Từ khóa:</div>
+  <div nz-col nzSpan="5">
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="input search text" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+  </div>
+
+  <div nz-col nzSpan="2" nzOffset="2">
+    Trạng thái:
+  </div>
+  <div nz-col nzSpan="5">
+    <nz-select style="width: 100%" [(ngModel)]="tableInfor.status" (ngModelChange)="optionChange()" nzAllowClear nzPlaceHolder="Choose state">
+      <nz-option *ngFor="let item of statuses" [nzValue]="item.value" [nzLabel]="item.name"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col nzSpan="6" nzOffset="2">
+    <button nz-button class="float-right" nzSize="small" nzType="primary" (click)="detail()"><i nz-icon nzType="plus"
+        nzTheme="outline"></i>Thêm</button>
+  </div>
+
+</div>
+
+<div class="pb5"></div>
+<nz-table #ajaxTable nzShowSizeChanger [nzFrontPagination]="false" [nzData]="items" [nzLoading]="tableInfor.loading"
+  [nzTotal]="tableInfor.total" [(nzPageIndex)]="tableInfor.pageIndex" [(nzPageSize)]="tableInfor.pageSize"
+  (nzPageIndexChange)="getList()" (nzPageSizeChange)="getList(true)">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Receiver</th>
+      <th>State</th>
+      <th>Date</th>
+      <th>Phone</th>
+      <th>Payment</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of ajaxTable.data">
+      <td>{{ data.code }}</td>
+      <td>{{ data.receiver }}</td>
+      <td>{{ data.state }}</td>
+      <td>{{ data.dateOrdered }}</td>
+      <td>{{ data.phoneNumber }}</td>
+      <td>{{ data.typeOfPayment }}</td>
+      <td [ngSwitch]="tableInfor.status">
+        <div *ngSwitchCase="'Sent'">
+          <a (click)="detail(data)">Detail</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-popconfirm nzTitle="Duyệt sản phẩm?" (nzOnConfirm)="OptionState(data._id)"
+            (nzOnCancel)="cancelDelete()">Approve</a>
+        </div>
+        <div *ngSwitchCase="'Approved'">
+          <a (click)="detail(data)">Detail</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-popconfirm nzTitle="Tiến hành giao hàng?" (nzOnConfirm)="OptionState(data._id)"
+            (nzOnCancel)="cancelDelete()">Deliver</a>
+        </div>
+        <div *ngSwitchCase="'Delivering'">
+          <a (click)="detail(data)">Detail</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-popconfirm nzTitle="Đơn hoàn hoàn tất ?" (nzOnConfirm)="OptionState(data._id)"
+            (nzOnCancel)="cancelDelete()">Complete</a>
+        </div>
+        <div *ngSwitchCase="'Closed'">
+          <a (click)="detail(data)">Detail</a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

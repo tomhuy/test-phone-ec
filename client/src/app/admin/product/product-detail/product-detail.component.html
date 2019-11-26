@@ -1,0 +1,148 @@
+<form nz-form [formGroup]="itemForm">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input nz-input formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="price">Price</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-input-number style="width: 100%" formControlName="price" [nzMin]="1" [nzStep]="1" id="price">
+      </nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="promotion">Promotion</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-input-number style="width: 100%" formControlName="promotion" [nzMin]="1" [nzStep]="1" id="promotion">
+      </nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="typeProduct">Type Product</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-select formControlName="typeProduct" nzAllowClear nzPlaceHolder="Choose type product">
+        <nz-option *ngFor="let item of typeProducts" [nzValue]="item._id" [nzLabel]="item.name"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="brand">Brand</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-select formControlName="brand" nzAllowClear nzPlaceHolder="Choose brand">
+        <nz-option *ngFor="let item of brands" [nzValue]="item._id" [nzLabel]="item.name"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="quantity">Quantity</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-input-number style="width: 100%" formControlName="quantity" [nzMin]="1" [nzStep]="1" id="quantity">
+      </nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="description">Description</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <textarea rows="4" nz-input formControlName="description" id="description"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="alias">Alias</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input nz-input formControlName="alias" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="alias">Hình ảnh</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <div nz-row>
+          <div nz-col nzSpan="12">
+              <div class="p10 center" *ngIf="itemForm.get('imagePaths').value">
+                  <img class="full-width" [src]="itemForm.get('imagePaths').value" />
+                </div>
+                <div class="p10 center" *ngIf="!itemForm.get('imagePaths').value">
+                  <img class="full-width" src="assets/products/img/empty.png" />
+                </div>
+          </div>
+          <div nz-col nzSpan="12">
+              <nz-upload [(nzFileList)]="images['imagePaths'].filesToUpload" [nzBeforeUpload]="beforeUploadImage"
+              [nzShowUploadList]="{showPreviewIcon: false, showRemoveIcon: true }">
+              <button type="button" class="btn btn-label-brand btn-bold btn-sm kt-margin-t-5 kt-margin-b-5">Chọn file</button>
+            </nz-upload>
+            <button nz-button nzType="primary" [nzLoading]="images['imagePaths'].uploading"
+              (click)="handleUpload('imagePaths')" [disabled]="images['imagePaths'].filesToUpload.length == 0"
+              style="margin-top: 16px"
+              >
+              {{ images['imagePaths'].uploading ? 'Đang upload' : 'Tải lên' }}
+            </button>
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" [nzNoColon]="true"></nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <label nz-checkbox formControlName="isPhone">Là điện thoại</label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <fieldset formGroupName="phoneInfo" *ngIf="itemForm.controls?.isPhone?.value">
+    <h4>Thông tin cấu hình điện thoại</h4>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="screenSize">Screen Size</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="screenSize" id="screenSize" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frontCam">FrontCam</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="frontCam" id="frontCam" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="backCam">BackCam</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="backCam" id="backCam" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="cpu">Cpu</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="cpu" id="cpu" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ram">Ram</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="ram" id="ram" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="storageCapacity">Storage Capacity</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="storageCapacity" id="storageCapacity" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="memoryCard">Memory Card</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="memoryCard" id="memoryCard" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ram">Sim</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="sim" id="sim" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="os">OS</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <input nz-input formControlName="os" id="os" />
+      </nz-form-control>
+    </nz-form-item>
+  </fieldset>
+</form>

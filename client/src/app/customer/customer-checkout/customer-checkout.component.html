@@ -1,0 +1,124 @@
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+  <div class="container">
+
+
+    <div class="billing_details">
+      <div class="row">
+        <div class="col-lg-8">
+          <h3>Billing Details</h3>
+          <!-- begin form  -->
+          <form class="row contact_form" action="#" [formGroup]="billForm" (ngSubmit)="placeOrder()" novalidate="novalidate">
+            <!-- first name -->
+            <div class="col-md-6 form-group p_star">
+              <input placeholder="first name" type="text" formControlName="firstname" class="form-control" id="firstname" name="firstname" required/>
+              <!-- <span class="placeholder" ></span> -->
+            </div>
+            <!-- last name  -->
+            <div class="col-md-6 form-group p_star">
+              <input placeholder="last name" type="text" formControlName="lastname" class="form-control" id="lastname" name="lastname" required/>
+              <!-- <span class="placeholder" data-placeholder="Last name"></span> -->
+            </div>
+
+            <!-- phone number  -->
+            <div class="col-md-6 form-group p_star">
+              <input placeholder="phone number" type="text" formControlName="phone" class="form-control" id="phone" name="phone" required />
+              <!-- <span class="placeholder" data-placeholder="Phone number"></span> -->
+            </div>
+            <!-- Email address  -->
+            <div class="col-md-6 form-group p_star">
+              <input placeholder="email address" type="text" formControlName="email" class="form-control" id="email" name="email" required/>
+              <!-- <span class="placeholder" data-placeholder="Email Address"></span> -->
+            </div>
+
+            <!-- <div class="col-md-12 form-group p_star">
+              <select class="country_select">
+                <option value="1">Country</option>
+                <option value="2">Country</option>
+                <option value="4">Country</option>
+              </select>
+            </div> -->
+            <!-- Address shipping  -->
+            <div class="col-md-12 form-group p_star">
+              <input placeholder="address" type="text" formControlName="address" class="form-control" id="address" name="address" required/>
+              <!-- <span class="placeholder" data-placeholder="Address detail"></span> -->
+            </div>
+            <!-- new funtion add later -->
+            <div class="col-md-12 form-group">
+              <div class="creat_account">
+                <input type="checkbox" id="f-option2" name="selector" />
+                <label for="f-option2">Create an account?</label>
+              </div>
+            </div>
+            <div class="col-md-12 form-group">
+              <div class="creat_account">
+                <h3>Shipping Details</h3>
+                <input type="checkbox" id="f-option3" name="selector" />
+                <label for="f-option3">Ship to a different address?</label>
+              </div>
+              <!-- note  -->
+              <textarea class="form-control" formControlName="note" name="note" id="note" rows="1" placeholder="Order Notes"></textarea>
+            </div>
+          </form>
+          <!-- end form  -->
+        </div>
+        <div class="col-lg-4">
+          <div class="order_box">
+            <h2>Your Order</h2>
+            <ul class="list">
+              <li>
+                <a href="#">Product
+                  <span>Total</span>
+                </a>
+              </li>
+              <li *ngFor="let item of items">
+                <a href="#">{{item.product.name}}
+                  <span class="middle">{{item.quantity}}</span>
+                  <span class="last">{{item.product.price * item.quantity| number}} VND</span>
+                </a>
+              </li>
+
+            </ul>
+            <ul class="list list_2">
+              <li>
+                <a href="#">Total
+                  <span>{{total| number}} VND</span>
+                </a>
+              </li>
+            </ul>
+            <div class="payment_item">
+              <div class="radion_btn">
+                <input type="radio" id="f-option5" name="selector" />
+                <label for="f-option5">Check payments</label>
+                <div class="check"></div>
+              </div>
+              <p>
+                Please send a check to Store Name, Store Street, Store Town,
+                Store State / County, Store Postcode.
+              </p>
+            </div>
+            <div class="payment_item active">
+              <div class="radion_btn">
+                <input type="radio" id="f-option6" name="selector" />
+                <label for="f-option6">Paypal </label>
+                <img src='../assets/customer/img/product/single-product/card.jpg' alt="" />
+                <div class="check"></div>
+              </div>
+              <p>
+                Please send a check to Store Name, Store Street, Store Town,
+                Store State / County, Store Postcode.
+              </p>
+            </div>
+            <div class="creat_account">
+              <input type="checkbox" id="f-option4" name="selector" />
+              <label for="f-option4">I’ve read and accept the </label>
+              <a href="#">terms & conditions*</a>
+            </div>
+            <a class="main_btn" [ngClass]="{'disable': this.billForm.invalid }" (click)="placeOrder()" >Proceed to Paypal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Checkout Area =================-->

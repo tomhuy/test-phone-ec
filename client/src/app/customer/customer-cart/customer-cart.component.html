@@ -1,0 +1,104 @@
+<!--================Cart Area =================-->
+<section class="cart_area">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Photo</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <!-- product col -->
+              <td>
+                <div class="media">
+                    <img style="width: 26%;" src='../assets/products/img/{{item.product.imagePaths[0]}}' alt="" />
+                </div>
+              </td>
+              <td style="width: 30%;">
+                  <div class="media-body">
+                      <p>{{item.product.name}}</p>
+                    </div>
+              </td>
+              <!-- price col -->
+              <td>
+                <h5>{{item.product.price | number}} VND</h5>
+              </td>
+              <!-- quantity col -->
+              <td>
+                <div class="product_count">
+
+                  <input type="text" name="qty" id="sst"
+                  [(ngModel)]="item.quantity"
+                    title="Quantity:"
+                    class="input-text qty" />
+                  <button
+                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                    class="increase items-count" type="button">
+                    <i class="lnr lnr-chevron-up"></i>
+                  </button>
+                  <button
+                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                    class="reduced items-count" type="button">
+                    <i class="lnr lnr-chevron-down"></i>
+                  </button>
+                </div>
+              </td>
+              <!-- total col -->
+              <td>
+                <h5>{{item.product.price * item.quantity| number}} VND</h5>
+              </td>
+            </tr>
+
+            <!-- total  -->
+            <tr class="bottom_button">
+              <td> <a (click)="updateCart()" type="button" class="gray_btn">Update Cart</a> </td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+              <td>
+                <div style="margin-left: -223px;" class="cupon_text">
+                  <a class="genric-btn success">Total</a>
+                  <a class="gray_btn" href="#">{{total| number}} VND</a>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr class="bottom_button">
+              <td>
+
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+
+
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="checkout_btn_inner">
+                  <a class="gray_btn" routerLink="/customer/category">Continue Shopping</a>
+                  <a class="main_btn" routerLink="/customer/checkout">Proceed to checkout</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Cart Area =================-->

@@ -1,0 +1,324 @@
+{
+  "info": {
+    "title": "PHONE SHOP WEB API",
+    "description": "All API in the backend",
+    "contact": {
+      "name": "Bao 'n' Huy company"
+    },
+    "servers": ["http://localhost:3000"]
+  },
+  "schemes": "http",
+  "consumes": "application/json",
+  "produces": "application/json",
+  "tags": [
+    {
+      "name": "Store Info",
+      "description": "Information of your shops"
+    },
+    {
+      "name": "Invoice Management",
+      "description": ""
+    },
+    {
+      "name": "Product Management",
+      "description": ""
+    },
+    {
+      "name": "Type Product Management",
+      "description": ""
+    },
+    {
+      "name": "User Management",
+      "description": ""
+    },
+    {
+      "name": "Staff Management",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/info": {
+      "get": {
+        "tags": ["Store Info"],
+        "description": "Use to request all information of shop",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/storeInfo"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Store Info"],
+        "summary": "Add a new info to the store",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Info object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/storeInfo"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/storeInfo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/info/{info_id}": {
+      "get": {
+        "tags": ["Store Info"],
+        "summary": "Get a info",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "info_id",
+            "in": "path",
+            "description": "ID that needs to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/storeInfo"
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "ID not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Store Info"],
+        "summary": "Delete a new info to the store",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "info_id",
+            "in": "path",
+            "description": "ID that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "ID not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Store Info"],
+        "summary": "Update a new info to the store",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "info_id",
+            "in": "path",
+            "description": "ID that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/storeInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated successfully"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "ID not found"
+          }
+        }
+      }
+    },
+    "/product": {
+      "get": {
+        "tags": ["Product Management"],
+        "description": "Use to request all products",
+        "response": {
+          "200": {
+            "description": "A successful response"
+          }
+        }
+      }
+    },
+    "/typeproduct": {},
+    "/invoice": {},
+    "/staff": {},
+    "/users": {}
+  },
+  "definitions": {
+    "storeInfo": {
+      "type": "object",
+      "properties": {
+        "phoneNumb": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "company": {
+          "type": "string"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "promotion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "phoneInfo": {
+          "$ref": "#/definitions/phoneInfo"
+        },
+        "typeProduct": {
+          "$ref": "#/definitions/TypeProduct"
+        },
+        "imagePaths": {
+          "type": "array"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "description": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        }
+      }
+    },
+    "TypeProduct": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "no": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "alias": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "$ref": "#/definitions/Product"
+        }
+      }
+    },
+    "phoneInfo": {
+      "type": "object",
+      "properties": {
+        "screenSize": {
+          "type": "string"
+        },
+        "frontCam": {
+          "type": "string"
+        },
+        "backCam": {
+          "type": "string"
+        },
+        "cpu": {
+          "type": "string"
+        },
+        "ram": {
+          "type": "string"
+        },
+        "storageCapacity": {
+          "type": "string"
+        },
+        "memoryCard": {
+          "type": "string"
+        },
+        "sim": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row" style="text-align: -webkit-center;">
+    <div class="col-md-12">
+      <h2>Socail Logins</h2>
+      <button (click)="facebooklogin()" class="btn btn-primary" style="background-color: black; border-color: #385998;">
+        <i class="fa fa-facebook"></i> Facebook
+      </button>
+      <button (click)="googleLogin()" class="btn btn-primary" style="background-color: red; border-color: #385998;">
+        <i class="fa fa-google"></i> Google
+      </button>
+    </div>
+    <div class="col-md-12" style="text-align: -webkit-center;">
+      <div class="card" style="width: 20rem; margin: 20px 0 24px; text-align: -webkit-center;" *ngIf="user.photoUrl">
+        <img [src]="user.photoUrl" alt="image" style="width: 200px; border-radius: 50%; margin-top: 10px;">
+        <div class="card-body">
+          <h4 class="card-title">{{user.name}}</h4>
+          <p class="card-text">{{user.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

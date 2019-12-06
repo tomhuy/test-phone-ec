@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class CartService {
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
+
   items: Item[] = [];
   total: number = 0;
   // product: Product;
@@ -88,7 +90,7 @@ export class CartService {
   }
 
   saveInvoice(data): any {
-    return this.http.post('/api/invoice/create', data);
+    return this.http.post(this.baseUrl + '/api/invoice/create', data);
   }
 
 

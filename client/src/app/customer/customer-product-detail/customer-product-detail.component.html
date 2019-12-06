@@ -77,13 +77,13 @@
           <div class="col-lg-5 offset-lg-1">
             <div class="s_product_text">
               <h3>{{productDetail.name}}</h3><br>
-              <h2>${{productDetail.price}}</h2><br>
+              <h2>{{productDetail.price | number}}</h2><br>
               <ul class="list">
                 <li>
                   <a href="#"> <span>Availibility</span> : In Stock</a>
                 </li><br>
                 <li>
-                  <a href="#"> <span>Promotion</span> : ${{productDetail.promotion}}</a>
+                  <a href="#"> <span>Promotion</span> : {{productDetail.promotion | number}}</a>
                 </li><br>
               </ul>
               <div class="product_count">

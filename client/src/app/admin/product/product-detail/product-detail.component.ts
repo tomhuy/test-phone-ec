@@ -167,7 +167,8 @@ export class ProductDetailComponent extends BaseDetailComponent implements OnIni
     // call service đẩy hình ảnh lên server tại chỗ này
     this.productSvc.uploadAnh(formData).subscribe(res => {
       // sau khi đấy lên thành công thì gán đường dẫn vào cái formcontrol là image
-      this.itemForm.get('imagePaths').setValue('https://phone-shop-server-huybao.herokuapp.com/assets/'+res); // thây  thế cái emty bằng path của hình ảnh vừa được tải lên
+      // this.itemForm.get('imagePaths').setValue('https://phone-shop-server-huybao.herokuapp.com/assets/'+res); // thây  thế cái emty bằng path của hình ảnh vừa được tải lên
+      this.itemForm.get('imagePaths').setValue('data:image/png;base64,' + res);
     });
 
 

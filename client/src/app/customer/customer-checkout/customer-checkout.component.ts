@@ -44,6 +44,7 @@ export class CustomerCheckoutComponent implements OnInit {
     let data = {
       receiver: info.firstname + ' ' + info.lastname,
       address: info.address,
+      email: info.email,
       note: info.note,
       phoneNumber: info.phone,
       typeOfPayment: 'COD',

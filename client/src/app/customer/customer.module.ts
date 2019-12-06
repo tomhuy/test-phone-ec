@@ -16,6 +16,7 @@ import { CustomerCartComponent } from './customer-cart/customer-cart.component';
 // services
 import { StoreInfoService } from 'src/app/services/customer/store-info.service';
 import { CartService } from 'src/app/services/customer/cart.customer.service';
+import { InvoiceCustomerService } from 'src/app/services/customer/invoice.customer.service';
 import { categoryService } from 'src/app/services/customer/category.customer.service';
 import { ProductCustomerService } from 'src/app/services/customer/product.customer.service';
 import { CustomerLoginSocialComponent } from './customer-login-social/customer-login-social.component';
@@ -23,6 +24,8 @@ import { CustomerCheckoutComponent } from './customer-checkout/customer-checkout
 
 // config import for login
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "ng4-social-login";
+import { CustomerTrackingComponent } from './customer-tracking/customer-tracking.component';
+import { TrackingShowComponent } from './customer-tracking/tracking-show/tracking-show.component';
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -49,7 +52,9 @@ export function provideConfig() {
     CustomerProductDetailComponent,
     CustomerCartComponent,
     CustomerCheckoutComponent,
-    CustomerLoginSocialComponent
+    CustomerLoginSocialComponent,
+    CustomerTrackingComponent,
+    TrackingShowComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +67,7 @@ export function provideConfig() {
   providers: [
     StoreInfoService,
     CartService,
+    InvoiceCustomerService,
     categoryService,
     ProductCustomerService,
     { provide: AuthServiceConfig, useFactory: provideConfig }

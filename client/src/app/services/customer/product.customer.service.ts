@@ -8,6 +8,8 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductCustomerService {
   product: Product;
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
+  // private baseUrl = '';
   // productID: string;
   productID = '5dbaf033dee8d12a048edce1';
 
@@ -18,14 +20,14 @@ export class ProductCustomerService {
   constructor(private http: HttpClient) { }
 
   getProduct(option): any {
-    return this.http.post('/api/product/get', option);
+    return this.http.post(this.baseUrl + '/api/product/get', option);
   }
   uploadAnh(option): any {
-    return this.http.post('/api/product/upload', option);
+    return this.http.post(this.baseUrl + '/api/product/upload', option);
   }
 
   getProductByID(_id: string) {
-    return this.http.get('/api/product' + `/${_id}`);
+    return this.http.get(this.baseUrl + '/api/product' + `/${_id}`);
   }
 
   setProductID(_id: string) {

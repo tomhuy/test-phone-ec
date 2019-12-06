@@ -11,6 +11,7 @@ import { SettingInformationListComponent } from './setting-information/setting-i
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AuthGuardAdminService } from '../services/auth-guard-admin.service';
 import { BrandListComponent } from './brand/brand-list/brand-list.component';
+import { StaffListComponent } from './staff/staff-list/staff-list.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardAdminService]},
     { path: 'product', component: ProductListComponent, canActivate: [AuthGuardAdminService]},
     { path: 'brand', component: BrandListComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'staff', component: StaffListComponent, canActivate: [AuthGuardAdminService]},
     { path: 'order', component: OrderListComponent, canActivate: [AuthGuardAdminService]},
     { path: 'customer', component: CustomerListComponent, canActivate: [AuthGuardAdminService]},
     { path: 'profile', component: AdminProfileComponent, canActivate: [AuthGuardAdminService]},

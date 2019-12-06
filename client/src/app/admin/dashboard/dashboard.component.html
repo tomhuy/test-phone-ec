@@ -1,4 +1,47 @@
-<p>dashboard works!</p>
-<button nz-button>
-  click me
-</button>
+<div style="background: #ECECEC; padding: 10px;">
+  <nz-row [nzGutter]="16">
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic [nzValue]="infoDashboard.noSent | number: '1.0-2'" [nzTitle]="'Số đơn hàng đang chờ duyệt'"
+          [nzPrefix]="prefixTplOne" [nzValueStyle]="{ color: '#3F8600' }">
+        </nz-statistic>
+        <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic [nzValue]="infoDashboard.noDelivery | number" [nzTitle]="'Số lượng đơn đang vận chuyển'"
+          [nzPrefix]="prefixTplTwo" [nzValueStyle]="{ color: '#CF1322' }">
+        </nz-statistic>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-up"></i></ng-template>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic [nzValue]="infoDashboard.noInvoice | number" [nzTitle]="'Số lượng đơn đặt hàng trong tháng'"
+          [nzPrefix]="prefixTplTwo" [nzValueStyle]="{ color: '#3F8600' }">
+        </nz-statistic>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-up"></i></ng-template>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic [nzValue]="infoDashboard.total | number" [nzTitle]="'Doanh thu trong tháng'"
+          [nzPrefix]="prefixTplTwo" [nzSuffix]="'VND'" [nzValueStyle]="{ color: '#CF1322' }">
+        </nz-statistic>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-up"></i></ng-template>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+</div>
+<div class="m10"></div>
+<div class="m10"></div>
+<div class="m10"><p style="font-size: x-large;"><b>Biểu đồ thống kê sản phẩm được mua nhiều trong tháng</b></p></div>
+<div nz-row nzType="flex" nzJustify="center">
+  <div nz-col nzSpan="12">
+    <ngx-charts-bar-vertical [view]="view" [results]="single" [gradient]="gradient" [xAxis]="showXAxis"
+      [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>

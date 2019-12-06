@@ -63,6 +63,7 @@ export interface TokenPayloadAdmin {
 @Injectable()
 export class AuthenticationService {
   // private url = 'https://phone-shop-server-huybao.herokuapp.com';
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
   private token: string
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -158,7 +159,7 @@ export class AuthenticationService {
   }
 
   public register(user: TokenPayload): Observable<any> {
-    const base = this.http.post('/api/users/register', user)
+    const base = this.http.post(this.baseUrl + '/api/users/register', user)
 
     const request = base.pipe(
       map((data: TokenResponse) => {
@@ -172,7 +173,7 @@ export class AuthenticationService {
   }
 
   public registersocial(user: TokenPayload): Observable<any> {
-    const base = this.http.post('/api/users/registersocial', user)
+    const base = this.http.post(this.baseUrl + '/api/users/registersocial', user)
 
     const request = base.pipe(
       map((data: TokenResponse) => {
@@ -187,7 +188,7 @@ export class AuthenticationService {
 
   // request to server to ask for token & then save token to local storage
   public login(user: TokenPayload): Observable<any> {
-    const base = this.http.post('/api/users/login', user);
+    const base = this.http.post(this.baseUrl + '/api/users/login', user);
 
     const request = base.pipe(
       map((data: TokenResponse) => {
@@ -202,7 +203,7 @@ export class AuthenticationService {
   }
 
   public loginAdmin(staff: TokenPayloadAdmin): Observable<any> {
-    const base = this.http.post('/api/staff/login', staff);
+    const base = this.http.post(this.baseUrl + '/api/staff/login', staff);
 
     const request = base.pipe(
       map((data: TokenResponse) => {
@@ -217,7 +218,7 @@ export class AuthenticationService {
   }
 
   public profile(): Observable<any> {
-    return this.http.get(`/api/users/profile`, {
+    return this.http.get(this.baseUrl + `/api/users/profile`, {
       headers: { Authorization: ` ${this.getToken()}` }
     });
   }

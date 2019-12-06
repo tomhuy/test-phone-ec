@@ -11,7 +11,7 @@ import { DataService } from 'src/app/services/data-service';
   styleUrls: ['./brand-detail.component.css']
 })
 export class BrandDetailComponent extends BaseDetailComponent implements OnInit {
-
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
   constructor(
     public modal: NzModalRef,
     public fb: FormBuilder,

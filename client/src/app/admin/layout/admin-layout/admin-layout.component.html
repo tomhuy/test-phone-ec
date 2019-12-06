@@ -1,13 +1,16 @@
 <nz-layout class="layout">
-  <nz-sider
-    nzCollapsible
-    [(nzCollapsed)]="isCollapsed"
-    [nzBreakpoint]="'lg'"
-    [nzCollapsedWidth]="0"
-    [nzZeroTrigger]="zeroTrigger"
-  >
-    <div class="logo"></div>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzBreakpoint]="'lg'" [nzCollapsedWidth]="0"
+    [nzZeroTrigger]="zeroTrigger">
+    <div>
+      <a routerLink="/admin/dashboard">
+        <img src="assets/mobilemarket3.png" routerLink="/admin/dashboard" alt="" style="width:50px; height: 50px; margin-top:10px; margin-left: 50px;">
+      </a>
+    </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item routerLink="/admin/dashboard">
+        <i nz-icon nzType="area-chart" nzTheme="outline"></i>
+        <span>Dashboard</span>
+      </li>
       <li nz-menu-item routerLink="/admin/product-type">
         <i nz-icon nzType="reconciliation" nzTheme="outline"></i>
         <span>Type Product</span>
@@ -28,6 +31,10 @@
         <i nz-icon nzType="usergroup-delete" nzTheme="outline"></i>
         <span>Customer</span>
       </li>
+      <li nz-menu-item routerLink="/admin/staff">
+        <i nz-icon nzType="usergroup-delete" nzTheme="outline"></i>
+        <span>Staff</span>
+      </li>
       <li nz-menu-item routerLink="/admin/settings">
         <i nz-icon nzType="setting" nzTheme="outline"></i>
         <span>Settings</span>
@@ -37,7 +44,7 @@
         <span>Profile</span>
       </li>
 
-        <button style="color: green;" nz-icon nz-menu-item (click)="logout()"><b>log out</b></button>
+      <button style="color: green;" nz-icon nz-menu-item (click)="logout()"><b>log out</b></button>
 
     </ul>
   </nz-sider>

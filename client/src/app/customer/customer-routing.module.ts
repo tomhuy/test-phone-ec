@@ -9,6 +9,8 @@ import { CustomerCartComponent } from './customer-cart/customer-cart.component';
 import { CustomerProductDetailComponent } from './customer-product-detail/customer-product-detail.component';
 import { CustomerLoginSocialComponent } from './customer-login-social/customer-login-social.component';
 import { CustomerCheckoutComponent } from './customer-checkout/customer-checkout.component';
+import { CustomerTrackingComponent } from './customer-tracking/customer-tracking.component';
+import { TrackingShowComponent } from './customer-tracking/tracking-show/tracking-show.component';
 
 //
 const routes: Routes = [
@@ -16,7 +18,9 @@ const routes: Routes = [
     path: '', component: CustomerLayoutComponent, children: [
       { path: 'home', component: CustomerHomeComponent },
       { path: 'category', component: CustomerCategoryComponent },
+      { path: 'tracking', component: CustomerTrackingComponent },
       { path: 'detail/:detailpro', component: CustomerProductDetailComponent },
+      { path: 'trackshow/:orderid', component: TrackingShowComponent },
       { path: 'cart', component: CustomerCartComponent },
       { path: 'checkout', component: CustomerCheckoutComponent },
       { path: 'profile', component: CustomerProfileComponent, canActivate: [AuthGuardService] },

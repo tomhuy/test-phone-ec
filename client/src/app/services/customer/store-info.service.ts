@@ -8,12 +8,12 @@ import { storeInfo } from 'src/app/models/storeInfo.model';
 export class StoreInfoService {
 
   storeInfo: storeInfo;
-  readonly baseURL = 'api/info';
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
   getStoreInfo() {
-    return this.http.get(this.baseURL);
+    return this.http.get(this.baseUrl + '/api/info');
   }
 
 
